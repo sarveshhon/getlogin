@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-enum LoginMethods { GOOGLE, FACEBOOK, APPLE }
-enum LoginMethodsOrientation { VERTICAL_DEFAULT, VERTICAL_CUSTOM, HORIZONTAL }
-enum VERTICAL { DEFAULT, CUSTOM }
+import 'package:getlogin/src/util/enums.dart';
 
 class LoginScreen extends StatefulWidget {
   final AppBar? appBar;
