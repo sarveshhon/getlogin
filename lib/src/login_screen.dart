@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getlogin/src/util/enums.dart';
+import 'package:getlogin/src/utils/enums.dart';
 
 class LoginScreen extends StatefulWidget {
   final AppBar? appBar;
