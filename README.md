@@ -96,10 +96,9 @@ LoginScreen({
   // Apple Login Callback with loginStatus,email,profilePic,firstName,lastName,error,authCode;
   void Function(AuthResponse)? appleLoginAuthResponse,
 });
-    
-    
-## Example
+```
 
+## Example
 ```dart
 import 'package:flutter/material.dart';
 import 'package:getlogin/getlogin.dart';
