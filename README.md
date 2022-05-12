@@ -31,8 +31,8 @@ Customize Input Fields
 
 Add getlogin to your pubspec.yaml file:
 ```dart
-"dependencies:"
-"get:"
+dependencies:
+getlogin: <version-here>
 ```
 Import get in files that it will be used:
 ```dart
@@ -97,32 +97,3 @@ import 'package:getlogin/getlogin.dart';
       void Function(AuthResponse)? appleLoginAuthResponse,
     });
 '''
-
-## Example
-```dart
-    import 'package:flutter/material.dart';
-    import 'package:getlogin/getlogin.dart';
-    
-    class MyLoginScreen extends StatelessWidget {
-      MyLoginScreen({Key? key}) : super(key: key);
-    
-      final TextEditingController loginInputField1 = TextEditingController();
-      final TextEditingController loginInputField2 = TextEditingController();
-    
-      @override
-      Widget build(BuildContext context) {
-        return LoginScreen(
-          loginInputField1Controller: loginInputField1,
-          loginInputField2Controller: loginInputField2,
-          loginMethods: const [LoginMethods.GOOGLE, LoginMethods.FACEBOOK],
-          googleLoginAuthResponse: (val) {
-            if (val.loginStatus == LoginStatus.SUCCESS) {
-            
-            } else {
-            
-            }
-          },
-        );
-      }
-    }
-```
