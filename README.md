@@ -96,4 +96,3 @@ import 'package:getlogin/getlogin.dart';
       // Apple Login Callback with loginStatus,email,profilePic,firstName,lastName,error,authCode;
       void Function(AuthResponse)? appleLoginAuthResponse,
     });
-'''
