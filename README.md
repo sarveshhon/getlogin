@@ -31,8 +31,8 @@ Customize Input Fields
 
 Add getlogin to your pubspec.yaml file:
 ```dart
-    "dependencies:"
-    "get:"
+"dependencies:"
+"get:"
 ```
 Import get in files that it will be used:
 ```dart
@@ -98,7 +98,7 @@ import 'package:getlogin/getlogin.dart';
     });
 '''
 
-Example
+## Example
 ```dart
     import 'package:flutter/material.dart';
     import 'package:getlogin/getlogin.dart';
