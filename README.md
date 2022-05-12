@@ -11,29 +11,118 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## About getlogin
+
+getlogin is an customizable login screen package. Which comes with the support of Normal SignIn, Google SignIn, Facebook SignIn, Apple SignIn.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Customize Login Screen
+Normal SignIn Supported
+Google SignIn Supported
+Facebook SignIn Supported
+Apple SignIn Supported
+Customize AppBar
+Customize Login Orientation
+Customize Button
+Customize Input Fields
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
+Add getlogin to your pubspec.yaml file:
 ```dart
-const like = 'sample';
+    "dependencies:"
+    "get:"
+```
+Import get in files that it will be used:
+```dart
+import 'package:getlogin/getlogin.dart';
 ```
 
-## Additional information
+## Usage
+```dart
+    LoginScreen({
+      // Provide Custom AppBar or it will use default
+      AppBar? appBar,
+      
+      // Provide Custom BodyColor or it will use default as White
+      Color? bodyColor,
+      
+      // Provide Custom loginHeader or it will use default as App Name
+      // Here you can pass Widget with Logo and Title
+      Widget? loginHeader,
+      
+      // Provide Custom TextInputField or it will use default
+      TextFormField? inputField1,
+      TextFormField? inputField2,
+      
+      // Provide Custom Declare Controller and assign here it will return response
+      TextEditingController? loginInputField1Controller,
+      TextEditingController? loginInputField2Controller,
+      
+      // Customize Login Button or it will use default as Buttons
+      Widget? loginButton,
+      Widget? googleLoginButton,
+      Widget? facebookLoginButton,
+      Widget? appleLoginButton,
+      
+      // Customize SignUp or it will use default as Text
+      Widget? signUp,
+      
+      // Pass the required Login Methods such as [LoginMethods.GOOGLE, LoginMethods.FACEBOOK]
+      // Default will be normal Login Method
+      List<LoginMethods>? loginMethods,
+      
+      // InputFeild Change listerner for both 1 and 2 fields
+      void Function(String)? onloginInputField1Change,
+      void Function(String)? onloginInputField2Change,
+      
+      // LoginMethodsOrientations as VERTICAL_DEFAULT, VERTICAL_CUSTOM, HORIZONTAL
+      // Horizontal Button will be Circular buttons
+      LoginMethodsOrientation? loginMethodsOrientation = LoginMethodsOrientation.VERTICAL_DEFAULT,
+      
+      // SignUp Callback;
+      void Function()? signUpCallback,
+      
+      // Normal Login Callback with inputField1 and inputField2 text;
+      void Function(String, String)? onLoginButtonClick,
+      
+      // Google Login Callback with loginStatus,email,profilePic,firstName,lastName,error,authCode;
+      void Function(AuthResponse)? googleLoginAuthResponse,
+      
+      // Facebook Login Callback with loginStatus,email,profilePic,firstName,lastName,error,authCode;
+      void Function(AuthResponse)? facebookLoginAuthResponse,
+      
+      // Apple Login Callback with loginStatus,email,profilePic,firstName,lastName,error,authCode;
+      void Function(AuthResponse)? appleLoginAuthResponse,
+    });
+'''
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+Example
+```dart
+    import 'package:flutter/material.dart';
+    import 'package:getlogin/getlogin.dart';
+    
+    class MyLoginScreen extends StatelessWidget {
+      MyLoginScreen({Key? key}) : super(key: key);
+    
+      final TextEditingController loginInputField1 = TextEditingController();
+      final TextEditingController loginInputField2 = TextEditingController();
+    
+      @override
+      Widget build(BuildContext context) {
+        return LoginScreen(
+          loginInputField1Controller: loginInputField1,
+          loginInputField2Controller: loginInputField2,
+          loginMethods: const [LoginMethods.GOOGLE, LoginMethods.FACEBOOK],
+          googleLoginAuthResponse: (val) {
+            if (val.loginStatus == LoginStatus.SUCCESS) {
+            
+            } else {
+            
+            }
+          },
+        );
+      }
+    }
+```
