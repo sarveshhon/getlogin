@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:getlogin/src/utils/enums.dart';
+import '../getlogin.dart';
+import 'logins/apple_signin.dart';
+import 'logins/facebook_signin.dart';
+import 'logins/google_signin.dart';
+import 'models/auth_response.dart';
 
 class LoginScreen extends StatefulWidget {
   final AppBar? appBar;
@@ -17,6 +21,9 @@ class LoginScreen extends StatefulWidget {
   final TextEditingController? loginInputField2Controller;
   final void Function(String)? onloginInputField1Change;
   final void Function(String)? onloginInputField2Change;
+  final void Function(AuthResponse)? googleLoginAuthResponse;
+  final void Function(AuthResponse)? facebookLoginAuthResponse;
+  final void Function(AuthResponse)? appleLoginAuthResponse;
   final void Function(String inp1, String inp2)? onLoginButtonClick;
   final void Function()? signUpCallback;
   final LoginMethodsOrientation? loginMethodsOrientation;
@@ -41,6 +48,9 @@ class LoginScreen extends StatefulWidget {
     this.onLoginButtonClick,
     this.signUpCallback,
     this.loginMethodsOrientation = LoginMethodsOrientation.VERTICAL_DEFAULT,
+    this.googleLoginAuthResponse,
+    this.facebookLoginAuthResponse,
+    this.appleLoginAuthResponse,
   });
 
   @override
@@ -155,7 +165,9 @@ class _LoginScreenState extends State<LoginScreen> {
       borderRadius: BorderRadius.circular(30),
       color: Colors.red,
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: () async {
+          widget.googleLoginAuthResponse!(await googleSignIn());
+        },
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         child: const Text(
@@ -174,7 +186,9 @@ class _LoginScreenState extends State<LoginScreen> {
       borderRadius: BorderRadius.circular(30),
       color: Colors.blue.shade900,
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: () async {
+          widget.facebookLoginAuthResponse!(await facebookSignIn());
+        },
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         child: const Text(
@@ -193,7 +207,9 @@ class _LoginScreenState extends State<LoginScreen> {
       borderRadius: BorderRadius.circular(30),
       color: Colors.black,
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: () async {
+          widget.appleLoginAuthResponse!(await appleSignIn());
+        },
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         child: const Text(
@@ -209,16 +225,20 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget defaultGoogleLoginButton2() {
     return FloatingActionButton(
       backgroundColor: Colors.white,
-      onPressed: () {},
+      onPressed: () async {
+        widget.googleLoginAuthResponse!(await googleSignIn());
+      },
       tooltip: 'Google',
-      child: Icon(Icons.g_mobiledata_outlined, color: Colors.red),
+      child: const Icon(Icons.g_mobiledata_outlined, color: Colors.red),
     );
   }
 
   Widget defaultFacebookLoginButton2() {
     return FloatingActionButton(
       backgroundColor: Colors.white,
-      onPressed: () {},
+      onPressed: () async {
+        widget.facebookLoginAuthResponse!(await facebookSignIn());
+      },
       tooltip: 'Facebook',
       child: Icon(Icons.facebook, color: Colors.blue.shade900),
     );
@@ -227,7 +247,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget defaultAppleLoginButton2() {
     return FloatingActionButton(
       backgroundColor: Colors.white,
-      onPressed: () {},
+      onPressed: () async {
+        widget.appleLoginAuthResponse!(await appleSignIn());
+      },
       tooltip: 'Apple',
       child: const Icon(Icons.apple, color: Colors.black),
     );
